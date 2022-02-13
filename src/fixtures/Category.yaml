@@ -1,0 +1,143 @@
+entity: Category
+items:
+  category1:
+    name: 'Women'
+    image: null
+    description: null
+    parent_id: 0
+  category2:
+    name: 'Men'
+    image: null
+    description: null
+    parent_id: 0
+  category3:
+    name: 'Clothing'
+    image: null
+    description: null
+    parent_id: 2
+  category4:
+    name: 'Shoes'
+    image: null
+    description: null
+    parent_id: 2
+  category5:
+    name: 'Sportswear'
+    image: null
+    description: null
+    parent_id: 2
+  category6:
+    name: 'Accessories'
+    image: null
+    description: null
+    parent_id: 2
+  category7:
+    name: 'Hoodies & Sweatshirts'
+    image: 'https://www.rankandstyle.com/media/products/j/jcrew-garment-dyed-french-terry-hoodie-mens-ho_Y1vfDeF.jpg'
+    description: "Serious about your casj wear? Don’t sweat it, because our edit of men’s hoodies and sweatshirts features the best cosy layers to keep you snug and stylish. Go big with ASOS DESIGN’s collection of oversized hoodies and your ’fits will be as cool as they are comfy. Topman is the brand to back for minimalists and maximalists alike – we’re talking sweatshirts for men in classic plain designs and graphic prints. In the market for a style overhaul? COLLUSION is on hand to deliver crew-neck sweatshirts in hype-worthy designs (tie-dye and acid-wash, we’re looking at you)."
+    parent_id: 3
+  category8:
+    name: 'Jackets & Coats'
+    description: "Searching for jackets that make you look good, feel good *and*stay warm can be a mission – cue our edit of men’s coats and jackets. Check out ASOS DESIGN for trench coats for men with modern twists, perfect for that smart/casj aesthetic. Keep Jack & Jones on your radar for sleek men’s jackets that’ll slot seamlessly into your daily rotation, while The North Face should feature on your ‘Top Five’ list if you’re after quality jackets to keep you toasty, come city or hiking trail. And for outerwear that keeps out the chill and passes the style test (we love the duality) we have plenty of leather jackets for men – all you have to do is scroll."
+    image: 'https://n.nordstrommedia.com/id/sr3/ca16d0e4-ed7c-4748-9698-6069a947f22c.jpeg?h=365&w=240&dpr=2'
+    parent_id: 3
+  category9:
+    name: 'Jeans'
+    description: "The building blocks of any casual outfit, our edit of men’s jeans is a worthwhile scroll. Get your fix of the new fits and dyes with a variety of styles from ASOS DESIGN – we’re talking day-to-day black jeans, on-trend dad cuts and statement colour palettes. For classic skinny and slim-fit jeans, head to Topman, or filter by Levi’s if you’re into that vintage look – 501s, we still love you. Like your jeans worn in? Then check out our selection of ripped jeans for men: from semi- to heavily distressed denim, there’s a style to suit you."
+    image: 'https://www.alcott.eu/dw/image/v2/BDJZ_PRD/on/demandware.static/-/Sites-catalog-alcott-master/default/dw97590614/hi-res/5T3563UW1415_C284_001.jpg?sw=300&sh=500&q=90&strip=false'
+    parent_id: 3
+  category10:
+    name: 'Joggers'
+    description: "Whether you’re making a streetwear statement or indulging in a post-work sofa sesh, our edit of men’s joggers has what you're after. Shop men’s sweatpants from ASOS DESIGN and discover a range of casual, relaxed styles in both simple and patterned designs. Whether you like your track pants to be slim-fit or baggy, there’s something to suit everyone in this edit. Hit up Nike for jogging bottoms in soft fabrics with practical pockets, or check out Collusion for pieces that don’t hold back on self-expression. Find skinny, slim-fit or cargo joggers that will help keep your style as unique as you are."
+    image: 'https://s7g3.scene7.com/is/image/soloinvest/n83030A?$big_image_web$'
+    parent_id: 3
+  category11:
+    name: 'Jumpers & Cardigans'
+    description: 'Guaranteed to keep you warm from the waist up, our edit of men’s jumpers and cardigans is here to see you through unpredictable climes with ease (and steez). Ever-classic roll-necks are here to stay thanks to Jack & Jones, while Topman’s collection of patterned jumpers for men serves knitwear just the way we like it: bright, bold and hella stylish. Shop ASOS DESIGN too and put it in neutral with crew-neck jumpers and men’s zip-up cardigans, or scroll chunky men’s knitwear for some serious layer players. Warning: outfit envy is inevitable.'
+    image: 'https://johnlewis.scene7.com/is/image/JohnLewis/004045299?'
+    parent_id: 3
+  category12:
+    name: 'Loungewear'
+    description: "Check out our edit of men’s loungewear for kit to kick back in. ASOS DESIGN will turn up the chill factor with men's dressing gowns and nightshirts, as well as onesies and joggers. And you can choose some new comfies from Tommy Hilfiger's loungewear sets for men. Staying in never looked so good thanks to Polo Ralph Lauren’s signature long-sleeve tops and logo shorts. But, remember, men's loungewear isn’t just for wearing indoors... Shop men's lounge pants and shorts from BOSS and Emporio Armani for styles you’ll actually want to be caught wearing out and about."
+    image: 'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1606579323-pajamas-2-1606579314.jpg'
+    parent_id: 3
+  category13:
+    name: 'Multipacks'
+    description: "Want to make the most of your spending? Don’t short change yourself on your favourite staples – stock up on your signature styles and invest in our range of men’s multipacks. The foundation for every look, our multi-pack t-shirts have that capsule wardrobe covered for every occasion, whether you’re doing dress-down or weekend chic. From classic crew necks to jersey polos and muscle fit tees, rack them up in multiples and style them with everything from jeans and chinos, to cropped trousers and joggers. ASOS DESIGN has all of your go-to garms at the ready, no matter your mood. Browse t-shirt packs, shorts, hoodies, and joggers for your off-duty uniform, or prep your work wardrobe with our smart trousers and 2-packs of shirts. From socks to sleeveless tees, we’ve got everything you need to keep you looking fresh. Expect cuts from all of your first-choice brands like Brave Soul and Jack & Jones, plus many more."
+    image: 'https://www.taylanozkan.com/wp-content/uploads/2021/07/nike-mens-multipacks-cotton-stretch-3-pack-boxer-briefs-in-navyburgundygray-multi.jpg'
+    parent_id: 3
+  category14:
+    name: 'Polo shirts'
+    image: 'https://www.ubuy.vn/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzE3d0xIM2dJeUwuX0FDX1VMMTUwMF8uanBn.jpg'
+    description: "From dress-down Fridays to weekend 'fits, our edit of men’s polo shirts knows no bounds when it comes to versatility. From long-sleeve polo shirts to short-sleeve polo tops, ASOS DESIGN has hundreds of styles and designs to suit your unique style, or take your pick from men's designer polo shirts by Fred Perry and Polo Ralph Lauren, adding their classic logos to your smart-casual rotation. You can pair your polo T-shirt with skinny jeans, tailored shorts or even check trousers. Preppy vibes incoming."
+    parent_id: 3
+  category15:
+    name: 'Shirts'
+    description: "From work to play, our collection of men’s shirts covers all bases. Shop ASOS DESIGN for everything from dress shirts for your 9-5 to plaid button-down shirts for your go-to everyday. Browse iconic designer shirts for men from Polo Ralph Lauren, with check patterns, preppy hues and logo details. Or, if you're looking to stay ahead of trends, express your unique style with denim, cord and soft-cotton styles from New Look. Explore our full range of men's shirts: whatever your style, we've got a shirt for it."
+    image: 'https://capthatt.com/wp-content/uploads/Men-Shirt-2017-Spring-New-Brand-Business-Men-s-Slim-Fit-Dress-shirt-Male-Long-sleeves.jpg'
+    parent_id: 3
+  category16:
+    name: 'Shorts'
+    description: "After more looks for your lower half? Make some legroom for our edit of practical-yet-stylish men’s shorts, featuring everything from classic denim cut-offs by ASOS DESIGN to comfy men’s jersey shorts made for loungin’ all year round. And if your warm-weather calendar’s filling up fast, reach for Jack & Jones’ range of breathable men’s linen shorts and men’s cotton shorts as temps start to rise. Whether you’re big on sporty styles or more into River Island’s smart-meets-casual vibes, we’ve got a pair that’ll work for your wardrobe – done and done."
+    image: "https://n.nordstrommedia.com/id/sr3/7b268423-41e3-436c-a68b-976687f10d98.jpeg?h=365&w=240&dpr=2"
+    parent_id: 3
+  category17:
+    name: 'Socks'
+    description: "Once you get the basics right, everything else just follows, so put your best foot forward and browse our edit of men's socks. We’ve got your essentials sorted. Scroll Nike for branded socks that will bring you both style and comfort, or shop adidas Originals for the classic, striped sports socks we all know and love. Browse our collection of designer socks to make your outfit pop, or stand out from the crowd and jump feet first into individual style with bold patterns and prints from ASOS DESIGN. It’s time to put your socks centre stage."
+    image: "https://images.asos-media.com/products/nike-training-cushioned-everyday-marl-socks-in-blue/201005369-1-black?$n_640w$&wid=634&fit=constrain"
+    parent_id: 3
+  category18:
+    name: 'Sportswear'
+    description: "Browse our men’s sportswear edit and score your latest workout win. With everything from training joggers and sports shorts to graphic T-shirts and logo hoodies, shop Nike Training for something to suit every workout, or scroll Under Armour’s activewear for men and find base-layers and track jackets to keep your body temperature regulated when exercising outdoors. Whether you’re after running shoes or box-fresh fashion trainers, classic kicks from adidas take you from the gym to the streets and beyond, while ASOS 4505 has your accessory needs on lock thanks to its collection of gym bags, running belts, training gloves and resistance bands. Workout mode: activated."
+    image: "https://images.asos-media.com/products/champion-training-t-shirt-with-logo-in-camo-black/24437660-1-grey?$n_640w$&wid=634&fit=constrain"
+    parent_id: 3
+  category19:
+    name: 'Suits & Tailoring'
+    description: "It's time to get suited and booted with our versatile collection of men's suits. Whether you're looking for a dinner suit to wear to a wedding or you just want to elevate your daytime look with a more casual suit, we've got what you're looking for. Shop brands like ASOS DESIGN and Burton Menswear for mix-and-match three-piece suits that you can wear in any combination. Want something different to the usual black, grey or navy? AVAIL London has tailored suits in eye-catching prints that let you express your individuality. From classic checked suits to on-trend oversized designs, browse our edit of men's suits to find a style that suits you."
+    image: "https://images.asos-media.com/products/asos-design-slim-suit-trousers-in-grey/23615003-1-grey?$n_640w$&wid=634&fit=constrain"
+    parent_id: 3
+  category20:
+    name: 'Swimwear'
+    description: "Whether you're chilling in the hot tub or racking up lengths in the pool, dive right into our men's swimwear collection to find swim shorts that work for you. For all the latest trends, scroll ASOS DESIGN where you’ll find swimming trunks in a range of lengths, colours and patterns: from tie dye and animal print to stripes and florals. Be as bold as you dare in unique prints from SikSilk, or check out Hollister for tropical designs that radiate vacay vibes. Looking to catch some waves? Browse our edit of board shorts and get set to surf in style."
+    image: "https://images.asos-media.com/products/topman-classic-swim-shorts-in-yellow/201134841-1-yellow?$n_640w$&wid=634&fit=constrain"
+    parent_id: 3
+  category21:
+    name: "Boots"
+    description: "A great pair of boots can really complete a look. Prep for unpredictable weather conditions or smart-casual plans with our edit of men’s boots. Scroll our selection of men’s suede boots in Chelsea and Chukka styles, or channel your inner rebel with iconic leather boots for men by Dr Martens. And, if life outdoors is your kind of thing, invest in a pair of men's lace-up boots from Timberland to soften that incline. Or, here to browse? ASOS DESIGN has a wide range of boots to suit any occasion, including a selection of men’s heeled boots for when you want to stand tall and put your best foot forward."
+    image: "https://images.asos-media.com/products/timberland-euro-sprint-hiker-boots-in-wheat-tan/200717902-1-wheattan?$n_640w$&wid=634&fit=constrain"
+    parent_id: 4
+  category22:
+    name: "Sandals"
+    description: "Step into summer with our men’s sandals, here for all your warm-weather needs. Form meets function with sports sandals from Teva, or try Birkenstock for size if you’re looking for leather sandals (and vegan alternatives) that never miss a beat. Whether you go for two straps or its toe-post silhouette, you’re on to a winner every time. For chunky soles, gladiator straps and closed-toe sandals with textured soles, ASOS DESIGN is your go-to, serving up all the latest trends each season."
+    image: "https://images.asos-media.com/products/asos-design-padded-two-strap-sandals-in-white/23438772-1-white?$n_640w$&wid=634&fit=constrain"
+    parent_id: 4
+  category23:
+    name: "Shoes"
+    description: "Whether you want to update your weekend line-up or sharpen up your looks, you won’t put a foot out of line with our collection of men’s shoes. Find men’s formal shoes that are going to lend some refinement when you’ve got an event on the cards, whether it’s the wedding of the year or that big work thing. Brogues and Oxford shoes are a good place to start for the smarter option, with no wardrobe having to make do without. When you want to bridge the gap between smart and casual, scroll our loafers and keep your look polished. Team them up with jeans and a tee when you’re going casual and upgrade to tailored trousers and a shirt for a sharper vibe. ASOS DESIGN has every style taken care of, from mules to espadrilles and everything in between. For branded styles, browse River Island and New Look to create a footwear edit that’s never going to let you down."
+    image: "https://images.asos-media.com/products/asos-design-brogue-shoes-in-brown-faux-suede/201377451-1-brown?$n_640w$&wid=634&fit=constrain"
+    parent_id: 4
+  category24:
+    name: "Slippers"
+    description: "Whether you spend more time in them than your outdoor shoes, or they just make getting out of bed that little bit easier, our edit of men’s slippers delivers on both comfort and style. For something more luxurious, our range of men's moccasin slippers by Barbour come in brown, tan and navy or try UGG's super-snug slippers for men for that premium comfort. Take your pick of styles from men's sheepskin slippers or more classic styles like checked textiles from ASOS Design. Ever considered a seasonal twist on sliders? Check out Polo Ralph Lauren's collection of slipper slides adding suave and sophistication to your downtime."
+    image: "https://images.asos-media.com/products/river-island-suede-mules-in-grey/201367519-1-grey?$n_640w$&wid=634&fit=constrain"
+    parent_id: 4
+  category25:
+    name: "Smart Shoes"
+    description: "Build your looks from the ground up and shop our collection of men’s smart shoes. Whether you’ve RSVPed to your best mate’s wedding, need to nail that work thing or feel like upgrading your 9-5 rotation, this is the place to start. Want to sharpen up and keep that individuality coming through? Check out ASOS DESIGN for those new season details, from snake-print panels to embroidery. Step out in creeper soles when you like to serve up your looks with some edge or flip the message with a pair of slick tassel loafers. We’ve got those classics catered for, too, with leather brogues, derby shoes, oxfords and monk shoes in the collection. Go for something a little different with embroidered loafers and backless loafers from high-street faves River Island, ready and waiting to add an unexpected undercurrent to your suit. And when the dress code is a little more low key, team them with jeans and a shirt for an easy update. For that go-to pair of shoes, shop smart loafers from New Look. Fringed, patent or woven, there’s a pair to suit every style identity. "
+    image: "https://images.asos-media.com/products/asos-design-loafers-in-grey-suede-with-tassel-on-natural-sole/200383128-1-grey?$n_640w$&wid=634&fit=constrain"
+    parent_id: 4
+  category26:
+    name: "Sports Accessories"
+    description: null
+    image: "https://images.asos-media.com/products/nike-metal-swoosh-cap-in-black-943092-010/8632701-1-black?$n_640w$&wid=634&fit=constrain"
+    parent_id: 5
+  category27:
+    name: "Sportswear Hoodies & Sweatshirts"
+    description: null
+    image: "https://images.asos-media.com/products/adidas-originals-trefoil-linear-premium-sweatshirt-in-chalky-brown-with-arm-patch/201081628-1-brown?$n_640w$&wid=634&fit=constrain"
+    parent_id: 5
+  category28:
+    name: "Sportswear Joggers"
+    description: null
+    image: "https://images.asos-media.com/products/puma-essentials-small-logo-slim-joggers-in-black/23817375-1-pumablack?$n_640w$&wid=634&fit=constrain"
+    parent_id: 5
+

@@ -1,0 +1,6 @@
+entity: Product
+items:
+  product{1..20}:
+    name: '{{commerce.product}}'
+    description: '{{commerce.productDescription}}'
+    image: '{{image.fashion}}'

@@ -1,0 +1,38 @@
+{
+  "name": "ecommerce_api",
+  "version": "1.0.0",
+  "description": "The Mock API for demo eCommerce Project. Support JWT Token, /users,/categories, /products, shopping_cart and etc endpoints",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "start:dev": "nodemon --ext .ts,.js --exec ts-node ./server.js",
+    "fixtures": "fixtures ./src/fixtures --require=ts-node/register --config src/config/orm.js --sync --debug",
+    "build": "rimraf ./build && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecommerce",
+    "api",
+    "restapi",
+    "node"
+  ],
+  "author": "Denis Huk",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.41",
+    "typeorm-naming-strategies": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.17",
+    "nodemon": "^2.0.15",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.5.0",
+    "typeorm-fixtures-cli": "^1.10.1",
+    "typescript": "^4.5.5"
+  }
+}

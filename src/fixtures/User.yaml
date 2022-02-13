@@ -1,0 +1,12 @@
+entity: User
+items:
+  user{1..100}:
+    fullname: '{{name.firstName}} {{name.lastName}}'
+    birth_date: '{{date.past(20)}}'
+    email: '{{internet.email}}'
+    avatar: '{{image.avatar}}'
+    phone: '{{phone.phoneNumber}}'
+    password: '{{internet.password}}'
+    __call:
+      setPassword:
+        - foo

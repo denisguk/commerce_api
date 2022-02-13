@@ -1,0 +1,10 @@
+entity: ProductVariant
+items:
+  product_variant{1..50}:
+    name: '{{commerce.product}}'
+    images: '{{image.imageUrl}},{{image.imageUrl}},{{image.imageUrl}}'
+    description: '{{commerce.productDescription}}'
+    price: '{{commerce.price}}'
+    product: '@product*'
+    quantity: '{{datatype.number(10)}}'
+    attributes: [{"property":"color","value":"{{internet.color}}"},{"property":"size","value":"{{commerce.productAdjective}}"}]
