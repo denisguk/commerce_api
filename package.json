@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production pm2 start build/server.js --watch",
     "start:dev": "nodemon --ext .ts,.js --exec ts-node src/server.js",
-    "fixtures": "fixtures ./src/fixtures --require=ts-node/register --config src/config/orm.js --sync --debug",
+    "fixtures": "fixtures ./src/fixtures --require=ts-node/register --config src/config/orm.dev.js --sync --debug",
     "build": "rimraf build && tsc -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -47,7 +47,7 @@ function CRUDController({EntityModel}) {
 
                 const EntityRepository = getRepository(EntityModel);
 
-                if (!Array.isArray(relations)) {
+                if (relations && !Array.isArray(relations)) {
                     relations = [relations];
                 }
 
