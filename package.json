@@ -4,10 +4,9 @@
   "description": "The Mock API for demo eCommerce Project. Support JWT Token, /users,/categories, /products, shopping_cart and etc endpoints",
   "main": "src/server.js",
   "scripts": {
-    "start": "node server",
+    "start": "NODE_ENV=production pm2 start build/server.js --watch",
     "start:dev": "nodemon --ext .ts,.js --exec ts-node src/server.js",
     "fixtures": "fixtures ./src/fixtures --require=ts-node/register --config src/config/orm.js --sync --debug",
-    "pm2": "NODE_ENV=production pm2 start build/server.js --watch",
     "build": "rimraf build && tsc -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
