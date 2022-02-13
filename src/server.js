@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import express from "express";
 import cors from "cors";
-import orm from './src/config/orm';
+import orm from './config/orm';
 import { createConnection } from "typeorm";
 
 const app = express();
@@ -9,7 +9,7 @@ const app = express();
 createConnection(orm);
 
 var corsOptions = {
-    origin: "http://localhost:8081"
+    origin: "*"
 };
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
@@ -17,7 +17,7 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({extended: true}));
 
-require("./src/routes")(app);
+require("./routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
