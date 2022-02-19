@@ -2,11 +2,11 @@ import {SnakeNamingStrategy} from "typeorm-naming-strategies";
 
 export default {
   type: "mysql",
-  host: "localhost",
+  host: "https://ecommerce.cle6tbzhrmb0.eu-central-1.rds.amazonaws.com",
   port: 3306,
   username: "root",
   password: "rootroot",
-  database: "ecommerce_api",
+  database: "ecommerce",
   synchronize: true,
   logging: false,
   entities: [
