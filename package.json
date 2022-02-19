@@ -24,7 +24,6 @@
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
-    "pm2": "^5.1.2",
     "ts-node": "^10.5.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.41",
