@@ -10,7 +10,7 @@ const router = express.Router();
 module.exports = app => {
 
     app.get("/", (req, res) => {
-        res.json({message: "Welcome to bezkoder application."});
+        res.json({message: "Welcome to eCommerce API"});
     });
 
     app.use('/api', authController(router));

@@ -26,6 +26,43 @@ npm start:dev
 Deployment right now work with Hekokuapp. The project connected to GitHub
 and it's possible to run deployments via UI of Heroku service.
 
+*Global Link*
+```
+https://ecommerce-api-nodejs.herokuapp.com
+```
+
+## How to use extra params in endpoints
+Right now API support next extra params that can be passed in URL (available only for List endpoints):
+```js
+let {
+    query,
+    relations,
+    order,
+    skip = 0,
+    take = 50,
+} = req.query
+```
+
+Example include variants and take only 1 item. 
+```js
+// Example
+const url = 'https://ecommerce-api-nodejs.herokuapp.com/api/product?relations=variants&take=1'
+```
+
+For filtering list of items are you can use `query=<JSON>` param. For example
+to filter items by name
+```js
+const url = 'https://ecommerce-api-nodejs.herokuapp.com/api/product?query={"name":"Chair"}';
+```
+
+
+For `api/<entity>/<id>` available only `relations` property
+
+Example
+```js
+const url = 'https://ecommerce-api-nodejs.herokuapp.com/api/product/4?relations[]=variants'
+```
+
 
 ## Run fixtures
 Fixtures - it's automatically generated data for demonstration or testing purposes. To insert

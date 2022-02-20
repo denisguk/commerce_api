@@ -22,7 +22,12 @@ function CRUDController({EntityModel}) {
     return {
         findOne: async (req, res) => {
             try {
-                const {relations} = req.query;
+                let {relations} = req.query;
+
+                if (relations && !Array.isArray(relations)) {
+                    relations = [relations];
+                }
+
                 const EntityRepository = getRepository(EntityModel);
                 const response = await EntityRepository.findOne(req.params, {relations});
 
@@ -40,7 +45,7 @@ function CRUDController({EntityModel}) {
                 let {
                     query,
                     relations,
-                    order,
+                    order = {id: "desc"},
                     skip = 0,
                     take = 50,
                 } = req.query;
@@ -51,9 +56,11 @@ function CRUDController({EntityModel}) {
                     relations = [relations];
                 }
 
-                if (!order) {
-                    order = {
-                        id: "desc",
+                if (order) {
+                    try {
+                        order = JSON.parse(decodeURIComponent(order));
+                    } catch (e) {
+                        order = {id: "desc"}
                     }
                 }
 
@@ -69,7 +76,7 @@ function CRUDController({EntityModel}) {
 
                 return res.json(response);
             } catch (err) {
-                return res.status(500).send({
+                return res.status(400).send({
                     message: err.message || "Some error occurred while retrieving tutorials."
                 });
             }
