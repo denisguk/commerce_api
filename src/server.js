@@ -1,12 +1,13 @@
 import "reflect-metadata";
 import express from "express";
 import cors from "cors";
-import { createConnection } from "typeorm";
+import {createConnection} from "typeorm";
+import {loadConfig} from "./utils";
 
 const app = express();
-const ormConfig = require(`./config/orm.${process.env.NODE_ENV || 'dev'}.js`);
+const ormConfig = loadConfig('orm');
 
-createConnection(ormConfig.default);
+createConnection(ormConfig);
 
 var corsOptions = {
     origin: "*"
