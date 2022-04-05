@@ -1,5 +1,5 @@
 import {Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {ProductVariant} from "./ProductVariant";
+import {ProductVariant} from "../Product/ProductVariant";
 
 @Entity()
 export class ShoppingCart {

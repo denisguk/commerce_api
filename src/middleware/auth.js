@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import {getRepository} from "typeorm";
-import {User} from "../entity/User";
+import {User} from "../entity/User/User";
 import {loadConfig} from "../utils";
 
 const config = loadConfig('common');
@@ -44,7 +44,7 @@ const generateToken = ({username}, rememberMe) => {
     }, config.TOKEN_KEY, { expiresIn });
 };
 
-module.exports = {
+export {
     verifyToken,
     generateToken
 };

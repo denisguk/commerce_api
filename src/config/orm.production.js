@@ -10,7 +10,7 @@ export default {
   synchronize: true,
   logging: false,
   entities: [
-    "./build/entity/*.js"
+    "./build/entity/**/*.js"
   ],
   migrations: [
     "./build/migration/**/*.js"

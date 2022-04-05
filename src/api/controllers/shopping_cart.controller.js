@@ -1,6 +1,6 @@
 import {getRepository, getConnection} from "typeorm";
-import {ShoppingCart} from '../../entity/ShoppingCart';
-import {ProductVariant} from '../../entity/ProductVariant';
+import {ShoppingCart} from '../../entity/ShoppingCart/ShoppingCart';
+import {ProductVariant} from '../../entity/Product/ProductVariant';
 
 module.exports = (router) => {
 
