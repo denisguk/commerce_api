@@ -75,7 +75,7 @@ module.exports = (router) => {
             const PasswordRecoveryRepository = getRepository(PasswordRecovery);
             const passwordRecovery = await PasswordRecoveryRepository.findOne({user: user.id});
 
-            if (!await hashService.compareTokens(token, passwordRecovery.hash)) {
+            if (!await hashService.compareTokens(token, passwordRecovery?.hash)) {
                 return res.status(404).json({
                     code: "NOT_FOUND",
                     message: "Sorry your token is not valid, please try it again."
