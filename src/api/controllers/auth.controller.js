@@ -60,7 +60,7 @@ module.exports = (router) => {
         '/forgot_password/restore',
         validate(UserValidator.getForgotPasswordRestore),
         async (req, res) => {
-            const {email, token, password, confirmPassword} = req.body;
+            const {email, token, password} = req.body;
 
             const UserRepository = getRepository(User);
             const user = await UserRepository.findOne({email});
