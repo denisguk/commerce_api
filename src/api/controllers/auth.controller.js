@@ -112,7 +112,7 @@ module.exports = (router) => {
 
         if (user && user.password === inputFields.password) {
             return res.json({
-                token: await generateToken(user.email, inputFields.rememberMe),
+                token: await generateToken({email: user.email}, inputFields.rememberMe),
                 // TODO change it to serializer
                 user: {
                     ...user,

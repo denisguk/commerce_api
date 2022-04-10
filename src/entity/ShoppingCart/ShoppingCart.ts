@@ -1,5 +1,6 @@
-import {Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {ProductVariant} from "../Product/ProductVariant";
+import {Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
+import {ShoppingCartItem} from "./ShoppingCartItem";
+import {User} from "../User/User";
 
 @Entity()
 export class ShoppingCart {
@@ -7,9 +8,11 @@ export class ShoppingCart {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToMany(() => ProductVariant)
-    @JoinTable()
-    items: ProductVariant[];
+    @OneToOne(() => User)
+    @JoinColumn()
+    user: User;
 
+    @OneToMany(() => ShoppingCartItem, item => item.shoppingCart)
+    items: ShoppingCartItem[]
 
 }

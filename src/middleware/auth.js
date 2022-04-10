@@ -13,16 +13,16 @@ const config = loadConfig('common');
  * @returns {*}
  */
 const verifyToken = async (req, res, next) => {
-    const token = req.body.token || req.query.token || req.headers["x-access-token"];
+    const token = (req.body.token || req.query.token || req.headers["authorization"] || '').replace('Bearer ', '');
 
     if (!token) {
         return res.status(403).send("A token is required for authentication");
     }
 
     try {
-        const username = jwt.verify(token, config.TOKEN_KEY);
+        const userHash = jwt.verify(token, config.TOKEN_KEY);
         const UserRepository = getRepository(User);
-        req.user = await UserRepository.findOne({email: username});
+        req.user = await UserRepository.findOne({email: userHash.email});
     } catch (err) {
         return res.status(401).send("Invalid Token");
     }
@@ -36,11 +36,11 @@ const verifyToken = async (req, res, next) => {
  * @param {boolean} rememberMe
  * @returns {string}
  */
-const generateToken = ({username}, rememberMe) => {
+const generateToken = ({email}, rememberMe) => {
     const expiresIn = rememberMe ? '7d' : '1h';
 
     return jwt.sign({
-        username
+        email
     }, config.TOKEN_KEY, { expiresIn });
 };
 

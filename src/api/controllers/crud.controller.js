@@ -103,7 +103,7 @@ function CRUDController({EntityModel}) {
                 const EntityRepository = getRepository(EntityModel);
                 const response = await EntityRepository.update(req.params, req.body);
 
-                return res.json({
+                return res.status(204).json({
                     success: true,
                     affected: response.raw.affected,
                 });
