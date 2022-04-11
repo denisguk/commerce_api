@@ -41,7 +41,7 @@ module.exports = (router) => {
             const shoppingCart = await ShoppingCartRepository.findOne({user: user.id});
             const response = await ShoppingCartItemRepository.insert({
                 quantity: body.quantity,
-                variant_: body.variantId,
+                variant: body.variantId,
                 shoppingCart: shoppingCart.id
             });
 
@@ -59,7 +59,7 @@ module.exports = (router) => {
      * Update item in the shopping cart
      */
     router.put(
-        '/shopping_cart/:id/item/:item_id',
+        '/shopping_cart/:id/item/:itemId',
         verifyToken,
         async (req, res) => {
             const {body, params, user} = req;
@@ -68,16 +68,16 @@ module.exports = (router) => {
             const ShoppingCartItemRepository = getRepository(ShoppingCartItem);
 
             const shoppingCart = await ShoppingCartRepository.findOne({user: user.id});
-            const response = await ShoppingCartItemRepository.insert({
-                id: params.item_id,
-                shopping_cart_id: shoppingCart.id
+            const response = await ShoppingCartItemRepository.update({
+                id: params.itemId,
+                shoppingCart: shoppingCart.id
             },  {
                 quantity: body.quantity,
             });
 
-            return res.status(204).json({
+            return res.status(200).json({
                 success:  true,
-                affected: response.raw.affected,
+                affected: response.affected,
             });
         });
 
