@@ -2,6 +2,7 @@ import express from "express";
 import authController from "../api/controllers/auth.controller";
 import userController from "../api/controllers/user.controller";
 import categoryController from "../api/controllers/category.controller";
+import commentController from "../api/controllers/comment.controller";
 import productController from "../api/controllers/product.controller";
 import shoppingCartController from "../api/controllers/shoppingCart.controller";
 
@@ -16,6 +17,7 @@ module.exports = app => {
     app.use('/api', authController(router));
     app.use('/api', userController(router));
     app.use('/api', categoryController(router));
+    app.use('/api', commentController(router));
     app.use('/api', productController(router));
     app.use('/api', shoppingCartController(router));
 };
