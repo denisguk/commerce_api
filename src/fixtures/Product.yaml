@@ -4,3 +4,5 @@ items:
     name: '{{commerce.product}}'
     description: '{{commerce.productDescription}}'
     image: '{{image.fashion}}'
+    categories:
+      - '@category*'

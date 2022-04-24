@@ -1,8 +1,8 @@
 entity: ProductVariant
 items:
-  product_variant{1..50}:
+  product_variant{1..400}:
     name: '{{commerce.product}}'
-    images: '{{image.imageUrl}},{{image.imageUrl}},{{image.imageUrl}}'
+    images: '{{image.imageUrl}},{{image.imageUrl}},{{image.imageUrl}},{{image.imageUrl}},{{image.imageUrl}}'
     description: '{{commerce.productDescription}}'
     price: '{{commerce.price}}'
     product: '@product*'

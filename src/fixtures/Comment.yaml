@@ -1,62 +1,8 @@
-entity: Product
+entity: Comment
 items:
-  comment1:
-    title: "This product is not vary well :( Don't reccoment to buy"
-    comment: "I've bought this product in December but recived it only in January. It's tooooooooo long. Why if I can bought it just crossing the street where I'm living.  So qualitiy is bad, price and delivery are the same. Please return my money"
-    rating: 1
-    author: 2,
-    product: 1
-  comment2:
-    title: "This product is not vary well :( Don't reccoment to buy"
-    comment: "I've bought this product in December but recived it only in January. It's tooooooooo long. Why if I can bought it just crossing the street where I'm living.  So qualitiy is bad, price and delivery are the same. Please return my money"
-    rating: 4
-    author: 2,
-    product: 3
-  comment3:
-    title: "This product is not vary well :( Don't reccoment to buy"
-    comment: "I've bought this product in December but recived it only in January. It's tooooooooo long. Why if I can bought it just crossing the street where I'm living.  So qualitiy is bad, price and delivery are the same. Please return my money"
-    rating: 5
-    author: 3,
-    product: 2
-  comment4:
-    title: "This product is not vary well :( Don't reccoment to buy"
-    comment: "I've bought this product in December but recived it only in January. It's tooooooooo long. Why if I can bought it just crossing the street where I'm living.  So qualitiy is bad, price and delivery are the same. Please return my money"
-    rating: 3
-    author: 5,
-    product: 5
-  comment5:
-    title: "This product is not vary well :( Don't reccoment to buy"
-    comment: "I've bought this product in December but recived it only in January. It's tooooooooo long. Why if I can bought it just crossing the street where I'm living.  So qualitiy is bad, price and delivery are the same. Please return my money"
-    rating: 3
-    author: 5,
-    product: 5
-  comment6:
-    title: "This product is not vary well :( Don't reccoment to buy"
-    comment: "I've bought this product in December but recived it only in January. It's tooooooooo long. Why if I can bought it just crossing the street where I'm living.  So qualitiy is bad, price and delivery are the same. Please return my money"
-    rating: 5
-    author: 5,
-    product: 5
-  comment7:
-    title: "This product is not vary well :( Don't reccoment to buy"
-    comment: "I've bought this product in December but recived it only in January. It's tooooooooo long. Why if I can bought it just crossing the street where I'm living.  So qualitiy is bad, price and delivery are the same. Please return my money"
-    rating: 4
-    author: 5,
-    product: 5
-  comment8:
-    title: "This product is not vary well :( Don't reccoment to buy"
-    comment: "I've bought this product in December but recived it only in January. It's tooooooooo long. Why if I can bought it just crossing the street where I'm living.  So qualitiy is bad, price and delivery are the same. Please return my money"
-    rating: 1
-    author: 5,
-    product: 5
-  comment9:
-    title: "This product is not vary well :( Don't reccoment to buy"
-    comment: "I've bought this product in December but recived it only in January. It's tooooooooo long. Why if I can bought it just crossing the street where I'm living.  So qualitiy is bad, price and delivery are the same. Please return my money"
-    rating: 1
-    author: 8,
-    product: 3
-  comment10:
-    title: "This product is not vary well :( Don't reccoment to buy"
-    comment: "I've bought this product in December but recived it only in January. It's tooooooooo long. Why if I can bought it just crossing the street where I'm living.  So qualitiy is bad, price and delivery are the same. Please return my money"
-    rating: 2
-    author: 11,
-    product: 6
+  comment{1..200}:
+    title: '{{lorem.sentences(1)}}'
+    comment: '{{lorem.sentences(4)}}'
+    rating: '{{datatype.number(5)}}'
+    author: '@user*'
+    product: '@product*'

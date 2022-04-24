@@ -2,8 +2,6 @@ import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
-    OneToOne,
-    JoinColumn,
     CreateDateColumn,
     UpdateDateColumn, ManyToOne
 } from "typeorm";
@@ -25,8 +23,7 @@ export class Comment {
     @Column({type: 'enum', enum: [1, 2, 3, 4, 5], default: 5})
     rating: [1, 2, 3, 4, 5];
 
-    @OneToOne(() => User)
-    @JoinColumn()
+    @ManyToOne(() => User, user => user.comments)
     author: User;
 
     @ManyToOne(() => Product, product => product.comments)
