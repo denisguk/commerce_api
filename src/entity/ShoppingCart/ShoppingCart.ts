@@ -2,8 +2,15 @@ import {Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn} from "t
 import {ShoppingCartItem} from "./ShoppingCartItem";
 import {User} from "../User/User";
 
+const fields = Object.freeze({
+    id: 'id',
+    user: 'user',
+    items: 'items',
+});
+
+
 @Entity()
-export class ShoppingCart {
+class ShoppingCart {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -15,4 +22,9 @@ export class ShoppingCart {
     @OneToMany(() => ShoppingCartItem, item => item.shoppingCart)
     items: ShoppingCartItem[]
 
-}
+};
+
+export {
+    ShoppingCart,
+    fields,
+};

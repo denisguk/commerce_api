@@ -35,7 +35,7 @@ function CRUDController({EntityModel}) {
             } catch (err) {
                 return res.status(500).send({
                     message:
-                        err.message || "Some error occurred while retrieving tutorials."
+                        err.message || "Some error occurred while retrieving ."
                 });
             }
         },

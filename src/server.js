@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import express from "express";
+import cookieSession from "cookie-session";
 import cors from "cors";
 import {createConnection} from "typeorm";
 import {loadConfig} from "./utils";
@@ -17,6 +18,12 @@ app.use(cors(corsOptions));
 app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({extended: true}));
+
+app.use(cookieSession({
+    name: 'session',
+    keys: ['super'],
+    maxAge: 24 * 4 * 60 * 60 * 1000 // 4 days
+}))
 
 require("./routes")(app);
 // set port, listen for requests

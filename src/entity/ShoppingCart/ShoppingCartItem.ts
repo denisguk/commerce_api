@@ -1,9 +1,17 @@
 import {Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 import {ProductVariant} from "../Product/ProductVariant";
-import {ShoppingCart} from "./ShoppingCart";
+import { ShoppingCart } from "./ShoppingCart";
+
+const fields = Object.freeze({
+    id: 'id',
+    meta: 'meta',
+    variant: 'variant',
+    quantity: 'quantity',
+    shoppingCart: 'shoppingCart',
+});
 
 @Entity()
-export class ShoppingCartItem {
+class ShoppingCartItem {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -21,3 +29,9 @@ export class ShoppingCartItem {
     @Column({type: "simple-json", nullable: true})
     meta: { key: string, value: string };
 }
+
+export {
+    ShoppingCartItem,
+    fields,
+};
+
