@@ -1,0 +1,26 @@
+entity: Delivery
+items:
+  delivery1:
+    id: 1
+    code: 'pickup'
+    title: 'Pick up from the store'
+    description: 'You can get you products in day of ordering'
+    amount: '0.00'
+  delivery2:
+    id: 2
+    code: 'ups_superpost'
+    title: 'UPS superfast'
+    description: '1-2 business day delivery.'
+    amount: '59.90'
+  delivery3:
+    id: 3
+    code: 'ups_ground'
+    title: 'UPS by ground'
+    description: '2-4 business day delivery.'
+    amount: '24.45'
+  delivery4:
+    id: 4
+    code: 'dhl'
+    title: 'DHL. Top priority delivery method'
+    description: '4-6 hours. After payment has been processed'
+    amount: '149.90'

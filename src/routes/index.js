@@ -5,6 +5,10 @@ import categoryController from "../api/controllers/category.controller";
 import commentController from "../api/controllers/comment.controller";
 import productController from "../api/controllers/product.controller";
 import shoppingCartController from "../api/controllers/shoppingCart.controller";
+import orderController from "../api/controllers/order.controller";
+import orderShippingAddressController from "../api/controllers/orderShippingAddress.controller";
+import deliveryController from "../api/controllers/delivery.controller";
+import couponController from "../api/controllers/coupon.controller";
 
 const router = express.Router();
 
@@ -20,4 +24,8 @@ module.exports = app => {
     app.use('/api', commentController(router));
     app.use('/api', productController(router));
     app.use('/api', shoppingCartController(router));
+    app.use('/api', orderController(router));
+    app.use('/api', orderShippingAddressController(router));
+    app.use('/api', deliveryController(router));
+    app.use('/api', couponController(router));
 };

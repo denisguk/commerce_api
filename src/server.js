@@ -7,6 +7,7 @@ import {loadConfig} from "./utils";
 
 const app = express();
 const ormConfig = loadConfig('orm');
+const config = loadConfig('common');
 
 createConnection(ormConfig);
 
@@ -21,7 +22,7 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(cookieSession({
     name: 'session',
-    keys: ['super'],
+    keys: [config.SESSION_KEY],
     maxAge: 24 * 4 * 60 * 60 * 1000 // 4 days
 }))
 

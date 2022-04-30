@@ -1,0 +1,20 @@
+entity: Coupon
+items:
+  coupon1:
+    id: 1
+    code: 'SUMMER'
+    title: '15% Discount'
+    description: 'Get 15% Discount during to incoming Summer.'
+    rule: '15.%.itm.itm_lvl'
+  coupon2:
+    id: 2
+    code: 'JUNE'
+    title: '$100 Discount for all order'
+    description: 'Get $100 for the whole order in case of $200'
+    rule: '15.%.itm.itm_lvl'
+  coupon3:
+    id: 3
+    code: 'FREE_SHIPPING'
+    title: 'Free Shipping'
+    description: 'Free Shipping for any order starting from $100'
+    rule: '100.%.del.crt_lvl'

@@ -1,4 +1,5 @@
 import {getRepository} from "typeorm";
+import {getRelations} from "../../utils/relations";
 
 /**
  * This is basic generic CRUD controller that can apply to any entity-model
@@ -24,12 +25,13 @@ function CRUDController({EntityModel}) {
             try {
                 let {relations} = req.query;
 
-                if (relations && !Array.isArray(relations)) {
-                    relations = [relations];
-                }
-
                 const EntityRepository = getRepository(EntityModel);
-                const response = await EntityRepository.findOne(req.params, {relations});
+                const response = await EntityRepository.findOne(
+                    req.params,
+                    {
+                        relations: getRelations(relations)
+                    }
+                );
 
                 res.json(response);
             } catch (err) {

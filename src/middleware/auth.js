@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import {getRepository} from "typeorm";
 import {User} from "../entity/User/User";
 import {loadConfig} from "../utils";
+import {CLIENT_ERROR_STATUSES, CLIENT_ERRORS} from "../utils/responseCodes";
 
 const config = loadConfig('common');
 
@@ -16,7 +17,9 @@ const verifyToken = async (req, res, next) => {
     const token = (req.body.token || req.query.token || req.headers["authorization"] || '').replace('Bearer ', '');
 
     if (!token) {
-        return res.status(403).send("A token is required for authentication");
+        return res
+            .status(CLIENT_ERROR_STATUSES.FORBIDDEN)
+            .json(CLIENT_ERRORS[CLIENT_ERROR_STATUSES.FORBIDDEN]());
     }
 
     try {
@@ -24,7 +27,9 @@ const verifyToken = async (req, res, next) => {
         const UserRepository = getRepository(User);
         req.user = await UserRepository.findOne({email: userHash.email});
     } catch (err) {
-        return res.status(401).send("Invalid Token");
+        return res
+            .status(CLIENT_ERROR_STATUSES.UNAUTHORIZED)
+            .json(CLIENT_ERRORS[CLIENT_ERROR_STATUSES.UNAUTHORIZED]());
     }
 
     return next();
@@ -37,11 +42,16 @@ const verifyToken = async (req, res, next) => {
  * @returns {string}
  */
 const generateToken = ({email}, rememberMe) => {
-    const expiresIn = rememberMe ? '7d' : '1h';
+    const expiresIn = rememberMe ? '7d' : '24h';
 
-    return jwt.sign({
-        email
-    }, config.TOKEN_KEY, { expiresIn });
+    return jwt.sign(
+        {
+            email
+        },
+        config.TOKEN_KEY,
+        {
+            expiresIn
+        });
 };
 
 export {

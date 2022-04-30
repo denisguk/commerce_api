@@ -1,8 +1,8 @@
 import {getRepository} from "typeorm";
 import {entities, fields} from '../../entity';
 import {verifyToken} from "../../middleware/auth";
-import {ShoppingCartItem} from "../../entity/ShoppingCart/ShoppingCartItem";
 import {getRelations} from "../../utils/relations";
+import {CLIENT_ERROR_STATUSES, CLIENT_ERRORS, CLIENT_SUCCESS_STATUSES} from '../../utils/responseCodes';
 
 module.exports = (router) => {
 
@@ -63,10 +63,9 @@ module.exports = (router) => {
             const shoppingCart = await repository.findOne(conditions);
 
             if (!shoppingCart) {
-                return res.status(404).json({
-                    code: "NOT_FOUND",
-                    message: "Sorry shopping cart is not found"
-                });
+                return res
+                    .status(CLIENT_ERROR_STATUSES.NOT_FOUND)
+                    .json(CLIENT_ERRORS[CLIENT_ERROR_STATUSES.NOT_FOUND](entities.ShoppingCart));
             }
 
             const response = await repositoryItem.insert({
@@ -76,7 +75,7 @@ module.exports = (router) => {
             });
 
             return res
-                .status(201)
+                .status(CLIENT_SUCCESS_STATUSES.CREATED)
                 .json({
                     [fields.ShoppingCartItem.quantity]: body[fields.ShoppingCartItem.quantity],
                     [fields.ShoppingCartItem.variant]: body[fields.ShoppingCartItem.variant],
@@ -107,10 +106,9 @@ module.exports = (router) => {
             const shoppingCart = await repository.findOne(conditions);
 
             if (!shoppingCart) {
-                return res.status(404).json({
-                    code: "NOT_FOUND",
-                    message: "Sorry shopping cart is not found"
-                });
+                return res
+                    .status(CLIENT_ERROR_STATUSES.NOT_FOUND)
+                    .json(CLIENT_ERRORS[CLIENT_ERROR_STATUSES.NOT_FOUND](entities.ShoppingCart));
             }
 
             const response = await repositoryItem.update({
@@ -120,10 +118,12 @@ module.exports = (router) => {
                 [fields.ShoppingCartItem.quantity]: body[fields.ShoppingCartItem.quantity],
             });
 
-            return res.status(200).json({
-                success: true,
-                affected: response.affected,
-            });
+            return res
+                .status(CLIENT_SUCCESS_STATUSES.SUCCESS)
+                .json({
+                    success: true,
+                    affected: response.affected,
+                });
         });
 
 
@@ -146,15 +146,24 @@ module.exports = (router) => {
             };
 
             const shoppingCart = await repository.findOne(conditions);
+
+            if (!shoppingCart) {
+                return res
+                    .status(CLIENT_ERROR_STATUSES.NOT_FOUND)
+                    .json(CLIENT_ERRORS[CLIENT_ERROR_STATUSES.NOT_FOUND](entities.ShoppingCart));
+            }
+
             const response = await repositoryItem.delete({
                 [fields.ShoppingCartItem.id]: params.id,
                 [fields.ShoppingCartItem.shoppingCart]: shoppingCart[fields.ShoppingCart.id]
             });
 
-            return res.status(200).json({
-                success: true,
-                affected: response.affected,
-            });
+            return res
+                .status(CLIENT_SUCCESS_STATUSES.NO_CONTENT)
+                .json({
+                    success: true,
+                    affected: response.affected,
+                });
         });
 
     return router;
