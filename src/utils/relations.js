@@ -1,6 +1,10 @@
 
 function getRelations(relations) {
-    if (relations && Array.isArray(relations)) {
+    if (!relations) {
+        return undefined
+    }
+
+    if (Array.isArray(relations)) {
         return relations;
     }
 
