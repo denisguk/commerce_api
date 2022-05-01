@@ -1,10 +1,11 @@
-import {Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 import {ShoppingCartItem} from "./ShoppingCartItem";
 import {User} from "../User/User";
 
 const fields = Object.freeze({
     id: 'id',
     user: 'user',
+    token: 'token',
     items: 'items',
 });
 
@@ -18,6 +19,9 @@ class ShoppingCart {
     @OneToOne(() => User)
     @JoinColumn()
     user: User;
+
+    @Column({length: 255, nullable: true})
+    token: string;
 
     @OneToMany(() => ShoppingCartItem, item => item.shoppingCart)
     items: ShoppingCartItem[]

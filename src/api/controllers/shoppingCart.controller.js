@@ -1,6 +1,6 @@
 import {getRepository} from "typeorm";
 import {entities, fields} from '../../entity';
-import {verifyToken} from "../../middleware/auth";
+import {verifyToken, verifyNonAuthUser} from "../../middleware/auth";
 import {getRelations} from "../../utils/relations";
 import {CLIENT_ERROR_STATUSES, CLIENT_ERRORS, CLIENT_SUCCESS_STATUSES} from '../../utils/responseCodes';
 
@@ -10,15 +10,12 @@ module.exports = (router) => {
      * Create or return new shopping cart based on user
      */
     router.get('/shopping_cart/user',
-        verifyToken,
+        verifyNonAuthUser,
         async (req, res) => {
             let {relations} = req.query;
-            const {user} = req;
+            const {user, token} = req;
             const repository = getRepository(entities.ShoppingCart);
-
-            const conditions = {
-                [fields.ShoppingCart.user]: user.id
-            };
+            const conditions = getUserConditions(user, token);
 
             const shoppingCart = await repository.findOne(
                 conditions,
@@ -46,27 +43,38 @@ module.exports = (router) => {
      */
     router.post(
         '/shopping_cart/:shoppingCartId/item',
-        verifyToken,
+        verifyNonAuthUser,
         async (req, res) => {
             const {
                 body,
-                user
+                user,
+                token
             } = req;
 
             const repository = getRepository(entities.ShoppingCart);
             const repositoryItem = getRepository(entities.ShoppingCartItem);
+            const conditions = getUserConditions(user, token);
 
-            const conditions = {
-                [fields.ShoppingCart.user]: user.id
-            };
-
-            const shoppingCart = await repository.findOne(conditions);
+            const shoppingCart = await repository.findOne(conditions, {
+                relations: [
+                    fields.ShoppingCart.items,
+                    `${fields.ShoppingCart.items}.${fields.ShoppingCartItem.variant}`
+                ]
+            });
 
             if (!shoppingCart) {
                 return res
                     .status(CLIENT_ERROR_STATUSES.NOT_FOUND)
                     .json(CLIENT_ERRORS[CLIENT_ERROR_STATUSES.NOT_FOUND](entities.ShoppingCart));
             }
+
+            shoppingCart.items.some((item) => {
+                if (item.variant.id === body[fields.ShoppingCartItem.variant]) {
+                    return res
+                        .status(CLIENT_ERROR_STATUSES.CONFLICT)
+                        .json(CLIENT_ERRORS[CLIENT_ERROR_STATUSES.CONFLICT](entities.ShoppingCartItem));
+                }
+            });
 
             const response = await repositoryItem.insert({
                 [fields.ShoppingCartItem.quantity]: body[fields.ShoppingCartItem.quantity],
@@ -89,7 +97,7 @@ module.exports = (router) => {
      */
     router.put(
         '/shopping_cart/:shoppingCartId/item/:id',
-        verifyToken,
+        verifyNonAuthUser,
         async (req, res) => {
             const {
                 body,
@@ -99,9 +107,7 @@ module.exports = (router) => {
 
             const repository = getRepository(entities.ShoppingCart);
             const repositoryItem = getRepository(entities.ShoppingCartItem);
-            const conditions = {
-                [fields.ShoppingCart.user]: user.id
-            };
+            const conditions = getUserConditions(user, token);
 
             const shoppingCart = await repository.findOne(conditions);
 
@@ -132,18 +138,17 @@ module.exports = (router) => {
      */
     router.delete(
         '/shopping_cart/:shoppingCartId/item/:id',
-        verifyToken,
+        verifyNonAuthUser,
         async (req, res) => {
             const {
+                token,
                 params,
                 user
             } = req;
 
             const repository = getRepository(entities.ShoppingCart);
             const repositoryItem = getRepository(entities.ShoppingCartItem);
-            const conditions = {
-                [fields.ShoppingCart.user]: user.id
-            };
+            const conditions = getUserConditions(user, token);
 
             const shoppingCart = await repository.findOne(conditions);
 
@@ -167,6 +172,13 @@ module.exports = (router) => {
         });
 
     return router;
+}
+
+
+function getUserConditions(user, token) {
+    return (user)
+        ? { [fields.ShoppingCart.user]: user.id }
+        : { [fields.ShoppingCart.token]: token }
 }
 
 

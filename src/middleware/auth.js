@@ -14,7 +14,8 @@ const config = loadConfig('common');
  * @returns {*}
  */
 const verifyToken = async (req, res, next) => {
-    const token = (req.body.token || req.query.token || req.headers["authorization"] || '').replace('Bearer ', '');
+    // TODO probably not needed to use
+    const token = searchToken(req).replace('Bearer ', '');
 
     if (!token) {
         return res
@@ -23,14 +24,52 @@ const verifyToken = async (req, res, next) => {
     }
 
     try {
-        const userHash = jwt.verify(token, config.TOKEN_KEY);
+        const userHash = parseToken(token);
         const UserRepository = getRepository(User);
+        req.token = token;
         req.user = await UserRepository.findOne({email: userHash.email});
     } catch (err) {
         return res
             .status(CLIENT_ERROR_STATUSES.UNAUTHORIZED)
             .json(CLIENT_ERRORS[CLIENT_ERROR_STATUSES.UNAUTHORIZED]());
     }
+
+    return next();
+};
+
+/**
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise<any>}
+ */
+const verifyNonAuthUser = async (req, res, next) => {
+    const token = searchToken(req).replace('Bearer ', '');
+
+    if (!token) {
+        return next();
+    }
+
+    try {
+        const repository = getRepository(User);
+        const userHash = parseToken(token);
+
+        if (userHash.email) {
+            req.user = await repository.findOne(
+                {
+                    email: userHash.email
+                }
+            );
+        }
+
+    } catch (err) {
+        return res
+            .status(CLIENT_ERROR_STATUSES.UNAUTHORIZED)
+            .json(CLIENT_ERRORS[CLIENT_ERROR_STATUSES.UNAUTHORIZED]());
+    }
+
+    req.token =  token;
 
     return next();
 };
@@ -54,7 +93,21 @@ const generateToken = ({email}, rememberMe) => {
         });
 };
 
+const parseToken = (token) => {
+    return jwt.verify(token, config.TOKEN_KEY);
+}
+
+
+const searchToken = (req) => {
+    return (
+        req.body.token ||
+        req.query.token ||
+        req.headers["authorization"] ||
+        '');
+}
+
 export {
     verifyToken,
+    verifyNonAuthUser,
     generateToken
 };

@@ -1,8 +1,7 @@
 import {getRepository} from "typeorm";
 import UserValidator from '../../entity/User/validators';
-import {User} from '../../entity/User/User';
-import {PasswordRecovery} from '../../entity/User/PasswordRecovery';
-import {generateToken} from "../../middleware/auth";
+import {entities, fields} from '../../entity';
+import {generateToken, verifyNonAuthUser} from "../../middleware/auth";
 import {validate} from "../../middleware/validation-result";
 import {loadConfig, hashService, sendEmail} from "../../utils";
 
@@ -18,7 +17,7 @@ module.exports = (router) => {
         validate(UserValidator.getForgotPassword),
         async (req, res) => {
             const {email} = req.body;
-            const UserRepository = getRepository(User);
+            const UserRepository = getRepository(entities.User);
             const user = await UserRepository.findOne({email});
 
             if (!user) {
@@ -28,7 +27,7 @@ module.exports = (router) => {
                 });
             }
 
-            const PasswordRecoveryRepository = getRepository(PasswordRecovery);
+            const PasswordRecoveryRepository = getRepository(entities.PasswordRecovery);
             const existedToken = await PasswordRecoveryRepository.findOne({user: user.id});
 
             if (existedToken) {
@@ -62,7 +61,7 @@ module.exports = (router) => {
         async (req, res) => {
             const {email, token, password} = req.body;
 
-            const UserRepository = getRepository(User);
+            const UserRepository = getRepository(entities.User);
             const user = await UserRepository.findOne({email});
 
             if (!user) {
@@ -72,7 +71,7 @@ module.exports = (router) => {
                 });
             }
 
-            const PasswordRecoveryRepository = getRepository(PasswordRecovery);
+            const PasswordRecoveryRepository = getRepository(entities.PasswordRecovery);
             const passwordRecovery = await PasswordRecoveryRepository.findOne({user: user.id});
 
             if (!passwordRecovery || !await hashService.compareTokens(token, passwordRecovery.hash)) {
@@ -93,39 +92,87 @@ module.exports = (router) => {
     /**
      * Log In method
      */
-    router.post(`/login/`, async (req, res) => {
-        const inputFields = {
-            email: req.body.email,
-            password: req.body.password,
-            rememberMe: Boolean(req.body.rememberMe),
-        };
+    router.post(
+        `/login`,
+        verifyNonAuthUser,
+        async (req, res) => {
+            const {
+                token,
+                body
+            } = req;
 
-        const UserRepository = getRepository(User);
-        const user = await UserRepository.findOne({email: inputFields.email});
+            const inputFields = {
+                email: body.email,
+                password: body.password,
+                rememberMe: Boolean(body.rememberMe),
+            };
 
-        if (!user) {
-            return res.status(403).json({
-                code: "NOT_FOUND",
-                message: "User with this email is not exist"
+            const userRepository = getRepository(entities.User);
+            const shoppingCartRepository = getRepository(entities.ShoppingCart);
+
+            const user = await userRepository.findOne({
+                [fields.User.email]: inputFields.email
             });
-        }
 
-        if (user && user.password === inputFields.password) {
+            if (!user) {
+                return res.status(403).json({
+                    code: "NOT_FOUND",
+                    message: "User with this email is not exist"
+                });
+            }
+
+            if (user && user[fields.User.password] !== inputFields.password) {
+                return res.status(403).json({
+                    code: "WRONG_PASSWORD",
+                    message: "Wrong email or password"
+                });
+            }
+
+            await shoppingCartRepository.update({
+                [fields.ShoppingCart.token]: token
+            }, {
+                [fields.ShoppingCart.token]: null,
+                [fields.ShoppingCart.user]: user[fields.User.id]
+            })
+
             return res.json({
-                token: await generateToken({email: user.email}, inputFields.rememberMe),
+                token: await generateToken(
+                    {
+                        email: user[fields.User.email]
+                    },
+                    inputFields.rememberMe
+                ),
+
                 // TODO change it to serializer
                 user: {
                     ...user,
                     password: undefined
                 },
-            });
-        }
 
-        return res.status(403).json({
-            code: "WRONG_PASSWORD",
-            message: "Wrong email or password"
+                shoppingCart: await shoppingCartRepository.findOne(
+                    {
+                        [fields.ShoppingCart.user]: user[fields.User.id]
+                    },
+                    {
+                        relations: [
+                            fields.ShoppingCart.items,
+                            `${fields.ShoppingCart.items}.${fields.ShoppingCartItem.variant}`
+                        ]
+                    }
+                )
+            });
         });
-    });
+
+    router.get('/token', async (req, res) => {
+        return res.json({
+            token: await generateToken(
+                {
+                    email: null,
+                },
+                true
+            ),
+        });
+    })
 
     return router;
 }

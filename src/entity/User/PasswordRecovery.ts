@@ -9,8 +9,17 @@ import {
 } from "typeorm";
 import {User} from "./User";
 
+
+const fields = Object.freeze({
+    id: 'id',
+    user: 'user',
+    hash: 'hash',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+});
+
 @Entity()
-export class PasswordRecovery {
+class PasswordRecovery {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -28,3 +37,8 @@ export class PasswordRecovery {
     @UpdateDateColumn()
     updatedAt: Date;
 }
+
+export {
+    PasswordRecovery,
+    fields,
+};

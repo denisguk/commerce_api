@@ -4,11 +4,17 @@ import * as DeliveryModel from "./Delivery/Delivery";
 import * as CouponModel from "./Coupon/Coupon"
 import * as OrderModel from "./Order/Order"
 import * as OrderShippingAddressModel from "./Order/OrderShippingAddress"
+import * as UserModel from "./User/User"
+import * as PasswordRecoveryModel from "./User/PasswordRecovery"
 
 const entities = {
+    // User entities
+    User: UserModel.User,
+    PasswordRecovery: PasswordRecoveryModel.PasswordRecovery,
+
     // Shopping cart entities
     ShoppingCart: ShoppingCartModel.ShoppingCart,
-    ShoppingCartItem: ShoppingCartItemModel.ShoppingCartItemModel,
+    ShoppingCartItem: ShoppingCartItemModel.ShoppingCartItem,
 
     // Info entities
     Delivery: DeliveryModel.Delivery,
@@ -21,6 +27,10 @@ const entities = {
 
 
 const fields = {
+    // User entities
+    User: UserModel.fields,
+    PasswordRecovery: PasswordRecoveryModel.fields,
+
     // Shopping cart entities
     ShoppingCart: ShoppingCartModel.fields,
     ShoppingCartItem: ShoppingCartItemModel.fields,

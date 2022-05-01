@@ -9,31 +9,37 @@ const CLIENT_ERROR_STATUSES = {
     UNAUTHORIZED: 401,
     FORBIDDEN: 403,
     NOT_FOUND: 404,
+    CONFLICT: 409,
 };
 
 const CLIENT_ERRORS = {
     [CLIENT_ERROR_STATUSES.BAD_REQUEST]: () => ({
-        statusCode: CLIENT_ERROR_STATUSES.BAD_REQUEST,
-        code: Object.keys(CLIENT_ERROR_STATUSES.BAD_REQUEST),
+        code: "BAD_REQUEST",
         message: "Bad request. ",
+        statusCode: CLIENT_ERROR_STATUSES.BAD_REQUEST,
     }),
 
     [CLIENT_ERROR_STATUSES.UNAUTHORIZED]: () => ({
-        statusCode: CLIENT_ERROR_STATUSES.UNAUTHORIZED,
-        code: Object.keys(CLIENT_ERROR_STATUSES.UNAUTHORIZED),
+        code: "UNAUTHORIZED",
         message: "Unauthorized. Invalid Token",
+        statusCode: CLIENT_ERROR_STATUSES.UNAUTHORIZED,
     }),
 
     [CLIENT_ERROR_STATUSES.FORBIDDEN]: () => ({
-        statusCode: CLIENT_ERROR_STATUSES.FORBIDDEN,
-        code: Object.keys(CLIENT_ERROR_STATUSES.FORBIDDEN),
+        code: "FORBIDDEN",
         message: "Forbidden. A token is required for authentication",
+        statusCode: CLIENT_ERROR_STATUSES.FORBIDDEN,
     }),
 
     [CLIENT_ERROR_STATUSES.NOT_FOUND]: (entity) => ({
-        statusCode: CLIENT_ERROR_STATUSES.NOT_FOUND,
-        code: Object.keys(CLIENT_ERROR_STATUSES.NOT_FOUND),
+        code: "NOT_FOUND",
         message: `"${entity.constructor.name}" is not Found.`,
+        statusCode: CLIENT_ERROR_STATUSES.NOT_FOUND,
+    }),
+    [CLIENT_ERROR_STATUSES.CONFLICT]: (entity) => ({
+        code: "CONFLICT",
+        message: `Duplicate entry "${entity.constructor.name}" entity`,
+        statusCode: CLIENT_ERROR_STATUSES.NOT_FOUND,
     }),
 };
 
