@@ -1,8 +1,10 @@
 import {getRepository} from "typeorm";
-import {entities, fields} from '../../entity';
-import {verifyToken, verifyNonAuthUser} from "../../middleware/auth";
+import {entities, fields, validators} from '../../entity';
+import {verifyNonAuthUser} from "../../middleware/auth";
 import {getRelations} from "../../utils/relations";
 import {CLIENT_ERROR_STATUSES, CLIENT_ERRORS, CLIENT_SUCCESS_STATUSES} from '../../utils/responseCodes';
+import {validate} from "../../middleware/validation-result";
+import UserValidator from "../../entity/User/validators";
 
 module.exports = (router) => {
 
@@ -44,6 +46,7 @@ module.exports = (router) => {
     router.post(
         '/shopping_cart/:shoppingCartId/item',
         verifyNonAuthUser,
+        validate(validators.ShoppingCart.getShoppingCartItemAdd),
         async (req, res) => {
             const {
                 body,
@@ -69,7 +72,7 @@ module.exports = (router) => {
             }
 
             shoppingCart.items.some((item) => {
-                if (item.variant.id === body[fields.ShoppingCartItem.variant]) {
+                if (item.variant?.id === body[fields.ShoppingCartItem.variant]) {
                     return res
                         .status(CLIENT_ERROR_STATUSES.CONFLICT)
                         .json(CLIENT_ERRORS[CLIENT_ERROR_STATUSES.CONFLICT](entities.ShoppingCartItem));
@@ -98,6 +101,7 @@ module.exports = (router) => {
     router.put(
         '/shopping_cart/:shoppingCartId/item/:id',
         verifyNonAuthUser,
+        validate(validators.ShoppingCart.getShoppingCartItemUpdate),
         async (req, res) => {
             const {
                 body,
@@ -139,6 +143,7 @@ module.exports = (router) => {
     router.delete(
         '/shopping_cart/:shoppingCartId/item/:id',
         verifyNonAuthUser,
+        validate(validators.ShoppingCart.getShoppingCartItemDelete),
         async (req, res) => {
             const {
                 token,
