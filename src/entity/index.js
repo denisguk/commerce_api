@@ -1,5 +1,6 @@
 import * as ShoppingCartModel from "./ShoppingCart/ShoppingCart";
 import * as ShoppingCartItemModel from "./ShoppingCart/ShoppingCartItem";
+import * as ShoppingCartTotalModel from "./ShoppingCart/ShoppingCartTotal";
 import * as DeliveryModel from "./Delivery/Delivery";
 import * as CouponModel from "./Coupon/Coupon"
 import * as OrderModel from "./Order/Order"
@@ -15,6 +16,7 @@ const entities = {
     // Shopping cart entities
     ShoppingCart: ShoppingCartModel.ShoppingCart,
     ShoppingCartItem: ShoppingCartItemModel.ShoppingCartItem,
+    ShoppingCartTotal: ShoppingCartTotalModel.ShoppingCartTotal,
 
     // Info entities
     Delivery: DeliveryModel.Delivery,
@@ -34,6 +36,7 @@ const fields = {
     // Shopping cart entities
     ShoppingCart: ShoppingCartModel.fields,
     ShoppingCartItem: ShoppingCartItemModel.fields,
+    ShoppingCartTotal: ShoppingCartTotalModel.fields,
 
     // Info entities
     Delivery: DeliveryModel.fields,
