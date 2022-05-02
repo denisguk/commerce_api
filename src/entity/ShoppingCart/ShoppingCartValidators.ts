@@ -4,7 +4,6 @@ import {param, body} from "express-validator";
 const getShoppingCartItemAdd = [
     body(ShoppingCartItem.fields.variant).isInt().notEmpty(),
     body(ShoppingCartItem.fields.quantity).isNumeric().notEmpty(),
-    body(ShoppingCartItem.fields.shoppingCart).isInt().notEmpty(),
 ];
 
 const getShoppingCartItemUpdate = [
