@@ -1,18 +1,21 @@
 import * as ShoppingCartModel from "./ShoppingCart/ShoppingCart";
 import * as ShoppingCartItemModel from "./ShoppingCart/ShoppingCartItem";
 import * as ShoppingCartTotalModel from "./ShoppingCart/ShoppingCartTotal";
-import * as ShoppingCartValidators from "./ShoppingCart/ShoppingCartValidators";
 import * as DeliveryModel from "./Delivery/Delivery";
 import * as CouponModel from "./Coupon/Coupon"
 import * as OrderModel from "./Order/Order"
 import * as OrderShippingAddressModel from "./Order/OrderShippingAddress"
 import * as UserModel from "./User/User"
 import * as PasswordRecoveryModel from "./User/PasswordRecovery"
+import * as ProductVariantModel from "./Product/ProductVariant"
 
 const entities = {
     // User entities
     User: UserModel.User,
     PasswordRecovery: PasswordRecoveryModel.PasswordRecovery,
+
+    // Product entities
+    ProductVariant: ProductVariantModel.ProductVariant,
 
     // Shopping cart entities
     ShoppingCart: ShoppingCartModel.ShoppingCart,
@@ -28,16 +31,13 @@ const entities = {
     OrderShippingAddress: OrderShippingAddressModel.OrderShippingAddress
 };
 
-const validators = {
-    // Shopping cart entities
-    ShoppingCart: ShoppingCartValidators,
-}
-
-
 const fields = {
     // User entities
     User: UserModel.fields,
     PasswordRecovery: PasswordRecoveryModel.fields,
+
+    // Product entities
+    ProductVariant: ProductVariantModel.fields,
 
     // Shopping cart entities
     ShoppingCart: ShoppingCartModel.fields,
@@ -54,7 +54,6 @@ const fields = {
 };
 
 export {
-    validators,
     entities,
     fields
 }

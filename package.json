@@ -4,7 +4,7 @@
   "description": "The Mock API for demo eCommerce Project. Support JWT Token, /users,/categories, /products, shopping_cart and etc endpoints",
   "main": "src/server.js",
   "scripts": {
-    "start": "NODE_ENV=production nodemon build/server.js",
+    "start": "NODE_ENV=production pm2 start build/server.js",
     "start:dev": "nodemon --ext .ts,.js --exec ts-node src/server.js",
     "fixtures:dev": "fixtures ./src/fixtures --require=ts-node/register --config src/config/orm.dev.js --sync --debug",
     "fixtures:prod": "fixtures ./src/fixtures --require=ts-node/register --config src/config/orm.production.js --sync --debug",
@@ -20,7 +20,6 @@
   "author": "Denis Huk",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "^2.0.15",
     "bcrypt": "^5.0.1",
     "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
@@ -30,6 +29,7 @@
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "nodemailer": "^6.7.3",
+    "pm2": "^5.2.0",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^10.5.0",
     "typeorm": "^0.2.41",
@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.17",
+    "nodemon": "^2.0.15",
     "rimraf": "^3.0.2",
     "typescript": "^4.5.5"
   }

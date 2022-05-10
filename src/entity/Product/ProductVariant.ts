@@ -1,8 +1,20 @@
 import { Entity, Column, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import {Product} from "./Product";
 
+const fields = Object.freeze({
+    id: 'id',
+    name: 'name',
+    price: 'price',
+    quantity: 'quantity',
+    description: 'description',
+    images: 'images',
+    attributes: 'attributes',
+    product: 'product',
+});
+
+
 @Entity()
-export class ProductVariant {
+class ProductVariant {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -27,4 +39,9 @@ export class ProductVariant {
 
     @ManyToOne(() => Product, product => product.variants)
     product: Product;
+}
+
+export {
+    ProductVariant,
+    fields,
 }

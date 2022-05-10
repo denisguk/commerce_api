@@ -7,7 +7,6 @@ import {Delivery} from "../Delivery/Delivery";
 
 const fields = Object.freeze({
     id: 'id',
-    user: 'user',
     status: 'status',
     shoppingCart: 'shoppingCart',
     deliveryMethod: 'deliveryMethod',
@@ -37,14 +36,16 @@ class Order {
     @JoinColumn()
     shoppingCart: ShoppingCart;
 
-    @OneToOne(() => User)
+    @OneToOne(() => OrderShippingAddress, {
+        cascade: true,
+    })
     @JoinColumn()
-    user: User;
-
-    @OneToOne(() => OrderShippingAddress)
     shippingAddress: OrderShippingAddress;
 
-    @OneToOne(() => Delivery)
+    @OneToOne(() => Delivery, {
+        cascade: true,
+    })
+    @JoinColumn()
     deliveryMethod: Delivery;
 
     @Column({type: 'enum', enum: enumTypes[fields.status], default: enumTypes[fields.status][0]})

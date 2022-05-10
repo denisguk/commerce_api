@@ -3,7 +3,7 @@ import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 const fields = Object.freeze({
     id: 'id',
     code: 'code',
-    rule: 'rule',
+    rawRule: 'rawRule',
     title: 'title',
     description: 'description',
 });
@@ -18,7 +18,7 @@ class Coupon {
     code: string
 
     @Column({length: 128})
-    rule: string;
+    rawRule: string;
 
     @Column({length: 128})
     title: string;

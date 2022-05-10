@@ -1,10 +1,10 @@
 import {getRepository} from "typeorm";
-import {entities, fields, validators} from '../../entity';
+import {entities, fields} from '../../entity';
+import * as validators from '../modules/shoppingCart/shoppingCart.validator';
 import {verifyNonAuthUser} from "../../middleware/auth";
 import {getRelations} from "../../utils/relations";
 import {CLIENT_ERROR_STATUSES, CLIENT_ERRORS, CLIENT_SUCCESS_STATUSES} from '../../utils/responseCodes';
 import {validate} from "../../middleware/validation-result";
-import UserValidator from "../../entity/User/validators";
 
 module.exports = (router) => {
 
@@ -46,7 +46,7 @@ module.exports = (router) => {
     router.post(
         '/shopping_cart/:shoppingCartId/item',
         verifyNonAuthUser,
-        validate(validators.ShoppingCart.getShoppingCartItemAdd),
+        validate(validators.getShoppingCartItemAdd),
         async (req, res) => {
             const {
                 body,
@@ -71,13 +71,15 @@ module.exports = (router) => {
                     .json(CLIENT_ERRORS[CLIENT_ERROR_STATUSES.NOT_FOUND](entities.ShoppingCart));
             }
 
-            shoppingCart.items.some((item) => {
-                if (item.variant?.id === body[fields.ShoppingCartItem.variant]) {
-                    return res
-                        .status(CLIENT_ERROR_STATUSES.CONFLICT)
-                        .json(CLIENT_ERRORS[CLIENT_ERROR_STATUSES.CONFLICT](entities.ShoppingCartItem));
-                }
+            const hasConflict = shoppingCart.items.some((item) => {
+                return (item.variant?.id === body[fields.ShoppingCartItem.variant])
             });
+
+            if (hasConflict) {
+                return res
+                    .status(CLIENT_ERROR_STATUSES.CONFLICT)
+                    .json(CLIENT_ERRORS[CLIENT_ERROR_STATUSES.CONFLICT](entities.ShoppingCartItem));
+            }
 
             const response = await repositoryItem.insert({
                 [fields.ShoppingCartItem.quantity]: body[fields.ShoppingCartItem.quantity],
@@ -101,7 +103,7 @@ module.exports = (router) => {
     router.put(
         '/shopping_cart/:shoppingCartId/item/:id',
         verifyNonAuthUser,
-        validate(validators.ShoppingCart.getShoppingCartItemUpdate),
+        validate(validators.getShoppingCartItemUpdate),
         async (req, res) => {
             const {
                 body,
@@ -143,7 +145,7 @@ module.exports = (router) => {
     router.delete(
         '/shopping_cart/:shoppingCartId/item/:id',
         verifyNonAuthUser,
-        validate(validators.ShoppingCart.getShoppingCartItemDelete),
+        validate(validators.getShoppingCartItemDelete),
         async (req, res) => {
             const {
                 token,
