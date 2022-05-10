@@ -4,7 +4,7 @@
   "description": "The Mock API for demo eCommerce Project. Support JWT Token, /users,/categories, /products, shopping_cart and etc endpoints",
   "main": "src/server.js",
   "scripts": {
-    "start": "NODE_ENV=production pm2 start build/server.js",
+    "start": "NODE_ENV=production nodemon build/server.js",
     "start:dev": "nodemon --ext .ts,.js --exec ts-node src/server.js",
     "fixtures:dev": "fixtures ./src/fixtures --require=ts-node/register --config src/config/orm.dev.js --sync --debug",
     "fixtures:prod": "fixtures ./src/fixtures --require=ts-node/register --config src/config/orm.production.js --sync --debug",
